@@ -15,7 +15,8 @@ source:
   sha256: ed345f4c7ea7ba064b187eb6b25f0ac46f17616f3b56ab89978935cdc67df1c4
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
 
   rpaths:
@@ -24,6 +25,10 @@ build:
 
 requirements:
   build:
+    - posix                # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+  host:
     - r-base
     - r-learnbayes
     - r-mass
@@ -35,9 +40,6 @@ requirements:
     - r-gmodels
     - r-nlme
     - r-sp >=1.0
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
 
   run:
     - r-base
@@ -51,7 +53,6 @@ requirements:
     - r-gmodels
     - r-nlme
     - r-sp >=1.0
-    - libgcc  # [not win]
 
 test:
   commands:
