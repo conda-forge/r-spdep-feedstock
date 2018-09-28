@@ -1,4 +1,4 @@
-{% set version = '0.6-13' %}
+{% set version = "0.7-9" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,11 +12,11 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/spdep_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: ed345f4c7ea7ba064b187eb6b25f0ac46f17616f3b56ab89978935cdc67df1c4
+  sha256: 95bdfeea31659283d1bc76702832c65f4f5f6bba0fa725318670559be7375d9f
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
 
   rpaths:
