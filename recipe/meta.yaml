@@ -31,7 +31,6 @@ requirements:
     - {{posix}}sed               # [win]
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
-
   host:
     - r-base
     - r-learnbayes
@@ -45,7 +44,6 @@ requirements:
     - r-nlme
     - r-sp >=1.0
     - r-spdata >=0.2.6.0
-
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
