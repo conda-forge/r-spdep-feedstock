@@ -1,4 +1,4 @@
-{% set version = '0.6-13' %}
+{% set version = '0.7-9' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -10,24 +10,27 @@ package:
 source:
   fn: spdep_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/spdep_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: ed345f4c7ea7ba064b187eb6b25f0ac46f17616f3b56ab89978935cdc67df1c4
+    - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
+  sha256: 95bdfeea31659283d1bc76702832c65f4f5f6bba0fa725318670559be7375d9f
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  skip: true  # [win32]
-
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: sf, parallel, spam(>= 2.1-0), RANN, rgeos, RColorBrewer, lattice, xtable, maptools (>= 0.5-4), foreign, igraph, knitr, rgdal, classInt
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-learnbayes
@@ -40,9 +43,10 @@ requirements:
     - r-gmodels
     - r-nlme
     - r-sp >=1.0
-
+    - r-spdata >=0.2.6.0
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-learnbayes
     - r-mass
     - r-matrix >=1.0.12
@@ -53,32 +57,35 @@ requirements:
     - r-gmodels
     - r-nlme
     - r-sp >=1.0
+    - r-spdata >=0.2.6.0
 
 test:
   commands:
-    - $R -e "library('spdep')"  # [not win]
+    - $R -e "library('spdep')"           # [not win]
     - "\"%R%\" -e \"library('spdep')\""  # [win]
 
 about:
-  home: https://r-forge.r-project.org/projects/spdep/
+  home: https://github.com/r-spatial/spdep/
   license: GPL (>= 2)
-  summary: "A collection of functions to create spatial weights matrix objects from polygon contiguities,
+  summary: "A collection of functions to create spatial weights matrix objects from polygon 'contiguities',
     from point patterns by distance and tessellations, for summarizing these objects,
     and for permitting their use in spatial data analysis, including regional aggregation
-    by minimum spanning tree; a collection of tests for spatial autocorrelation, including
-    global Moran's I, APLE, Geary's C, Hubert/Mantel general cross product statistic,
-    Empirical Bayes estimates and Assun\xE7\xE3o/Reis Index, Getis/Ord G and multicoloured
-    join count statistics, local Moran's I and Getis/Ord G, saddlepoint approximations
-    \ and exact tests for global and local Moran's I; and functions for estimating spatial
-    simultaneous autoregressive (SAR) lag and error models, impact measures for lag
-    models, weighted and unweighted SAR and CAR spatial regression models, semi-parametric
-    and Moran eigenvector spatial filtering, GM SAR error models, and generalized spatial
-    two stage least squares models."
+    by minimum spanning tree; a collection of tests for spatial 'autocorrelation', including
+    global 'Morans I', 'APLE', 'Gearys C', 'Hubert/Mantel' general cross product statistic,
+    Empirical Bayes estimates and 'Assun\xE7\xE3o/Reis' Index, 'Getis/Ord' G and multicoloured
+    join count statistics, local 'Moran's I' and 'Getis/Ord' G, 'saddlepoint' approximations,
+    exact tests for global and local 'Moran's I' and 'LOSH' local indicators of spatial
+    heteroscedasticity; and functions for estimating spatial simultaneous 'autoregressive'
+    ('SAR') lag and error models, impact measures for lag models, weighted and 'unweighted'
+    'SAR' and 'CAR' spatial regression models, semi-parametric and Moran 'eigenvector'
+    spatial filtering, 'GM SAR' error models, and generalized spatial two stage least
+    squares models."
 
   license_family: GPL3
 
 extra:
   recipe-maintainers:
+    - dpryan79
     - johanneskoester
     - bgruening
     - daler
