@@ -29,6 +29,7 @@ requirements:
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
+    - libblas
     - r-base
     - r-learnbayes
     - r-mass
