@@ -1,4 +1,4 @@
-{% set version = '1.1-3' %}
+{% set version = "1.1-5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: 335bbeac4d27379cf941e58da6f39ee25ba31838d56362c7b2d9308c9d930cb9
+  sha256: 47cb46cf5cf1f4386eb1b5e4d8541d577d7f2939e74addbdb884ecf2323f6d5d
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -67,31 +67,15 @@ test:
 about:
   home: https://github.com/r-spatial/spdep/
   license: GPL-2
-  summary: "A collection of functions to create spatial weights matrix objects from polygon 'contiguities',
-    from point patterns by distance and tessellations, for summarizing these objects,
-    and for permitting their use in spatial data analysis, including regional aggregation
-    by minimum spanning tree; a collection of tests for spatial 'autocorrelation', including
-    global 'Morans I' and 'Gearys C' proposed by 'Cliff' and 'Ord' (1973, ISBN: 0850860369)
-    and (1981, ISBN: 0850860814), 'Hubert/Mantel' general cross product statistic, Empirical
-    Bayes estimates and 'Assun\xE7\xE3o/Reis' (1999) <doi:10.1002/(SICI)1097-0258(19990830)18:16%3C2147::AID-SIM179%3E3.0.CO;2-I>
-    Index, 'Getis/Ord' G ('Getis' and 'Ord' 1992) <doi:10.1111/j.1538-4632.1992.tb00261.x>
-    and multicoloured join count statistics, 'APLE' ('Li 'et al.' ) <doi:10.1111/j.1538-4632.2007.00708.x>,
-    local 'Moran's I' ('Anselin' 1995) <doi:10.1111/j.1538-4632.1995.tb00338.x> and
-    'Getis/Ord' G ('Ord' and 'Getis' 1995) <doi:10.1111/j.1538-4632.1995.tb00912.x>,
-    'saddlepoint' approximations ('Tiefelsdorf' 2002) <doi:10.1111/j.1538-4632.2002.tb01084.x>
-    and exact tests for global and local 'Moran's I' ('Bivand et al.' 2009) <doi:10.1016/j.csda.2008.07.021>
-    and 'LOSH' local indicators of spatial heteroscedasticity ('Ord' and 'Getis') <doi:10.1007/s00168-011-0492-y>.
-    The implementation of most of the measures is described in 'Bivand' and 'Wong' (2018)
-    <doi:10.1007/s11749-018-0599-x>. 'spdep' >= 1.1-1 corresponds to 'spatialreg' >=
-    1.1-1, in which the model fitting functions are deprecated and pass through to 'spatialreg',
-    but will mask those in 'spatialreg'. From versions 1.2-1, the functions will be
-    made defunct in 'spdep'. For now 'spatialreg' only has functions from 'spdep', where
-    they are shown as deprecated. 'spatialreg' only loads the namespace of 'spdep';
-    if you attach 'spdep', the same functions in the other package will be masked. Some
-    feed through adequately, others do not."
+  summary: "A collection of functions to create spatial weights matrix objects from polygon 'contiguities', from point patterns by distance and tessellations, for summarizing these objects, and for permitting their use in spatial data analysis, including regional aggregation by minimum spanning tree; a collection of tests\
+    \ for spatial 'autocorrelation', including global 'Morans I' and 'Gearys C' proposed by 'Cliff' and 'Ord' (1973, ISBN: 0850860369) and (1981, ISBN: 0850860814), 'Hubert/Mantel' general cross product statistic, Empirical Bayes estimates and 'Assunção/Reis' (1999) <doi:10.1002/(SICI)1097-0258(19990830)18:16%3C2147::AID-SIM179%3E3.0.CO;2-I>\
+    \ Index, 'Getis/Ord' G ('Getis' and 'Ord' 1992) <doi:10.1111/j.1538-4632.1992.tb00261.x> and multicoloured join count statistics, 'APLE' ('Li 'et al.' ) <doi:10.1111/j.1538-4632.2007.00708.x>, local 'Moran's I' ('Anselin' 1995) <doi:10.1111/j.1538-4632.1995.tb00338.x> and 'Getis/Ord' G ('Ord' and 'Getis' 1995) <doi:10.1111/j.1538-4632.1995.tb00912.x>,\
+    \ 'saddlepoint' approximations ('Tiefelsdorf' 2002) <doi:10.1111/j.1538-4632.2002.tb01084.x> and exact tests for global and local 'Moran's I' ('Bivand et al.' 2009) <doi:10.1016/j.csda.2008.07.021> and 'LOSH' local indicators of spatial heteroscedasticity ('Ord' and 'Getis') <doi:10.1007/s00168-011-0492-y>. The implementation\
+    \ of most of the measures is described in 'Bivand' and 'Wong' (2018) <doi:10.1007/s11749-018-0599-x>. 'spdep' >= 1.1-1 corresponds to 'spatialreg' >= 1.1-1, in which the model fitting functions are deprecated and pass through to 'spatialreg', but will mask those in 'spatialreg'. From versions 1.2-1, the functions will\
+    \ be made defunct in 'spdep'. For now 'spatialreg' only has functions from 'spdep', where they are shown as deprecated. 'spatialreg' only loads the namespace of 'spdep'; if you attach 'spdep', the same functions in the other package will be masked. Some feed through adequately, others do not."
   license_family: GPL2
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
