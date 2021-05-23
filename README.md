@@ -3,7 +3,7 @@ About r-spdep
 
 Home: https://github.com/r-spatial/spdep/
 
-Package license: GPL-2
+Package license: GPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-spdep-feedstock/blob/master/LICENSE.txt)
 
@@ -90,6 +90,7 @@ Installing `r-spdep` from the `conda-forge` channel can be achieved by adding `c
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `r-spdep` can be installed with:
