@@ -1,4 +1,4 @@
-{% set version = "1.1-13" %}
+{% set version = "1.2-1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: 079d4ca66845782082b0a0e712e0c10888d8cf0825b772484a26c567c395d97b
+  sha256: e8cc788d4e6fbb962f4e1fb45dff166cd9dd0935a9fd502699f9a95fdf4a43f9
 
 build:
   merge_build_host: true  # [win]
