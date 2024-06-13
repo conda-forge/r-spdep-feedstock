@@ -15,6 +15,7 @@ source:
 build:
   merge_build_host: true  # [win]
   number: 0
+  skip: true  # [win]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -39,7 +40,7 @@ requirements:
     - r-s2
     - r-sf
     - r-sp >=1.0
-    - r-spdata >=0.2.6.0
+    - r-spdata >=2.3.1
     - r-units
   run:
     - r-base
@@ -50,7 +51,7 @@ requirements:
     - r-s2
     - r-sf
     - r-sp >=1.0
-    - r-spdata >=0.2.6.0
+    - r-spdata >=2.3.1
     - r-units
 
 test:
