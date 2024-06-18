@@ -1,4 +1,4 @@
-{% set version = "1.3-4" %}
+{% set version = "1.3-5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: 10fc12aa97ae9fe7138371d54c65919e651ab30514ed4e98f670884c71d9fa77
+  sha256: ba8efa06ddbc12408f4f6d4c85606d84922131d9c05953e0b23b81f03e56e626
 
 build:
   merge_build_host: true  # [win]
   number: 0
+  skip: true  # [win]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -39,7 +40,7 @@ requirements:
     - r-s2
     - r-sf
     - r-sp >=1.0
-    - r-spdata >=0.2.6.0
+    - r-spdata >=2.3.1
     - r-units
   run:
     - r-base
@@ -50,7 +51,7 @@ requirements:
     - r-s2
     - r-sf
     - r-sp >=1.0
-    - r-spdata >=0.2.6.0
+    - r-spdata >=2.3.1
     - r-units
 
 test:
