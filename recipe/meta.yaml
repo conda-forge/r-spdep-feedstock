@@ -12,7 +12,7 @@ source:
   sha256: a74ef483ea628beb7ad16e24dce49a39ff0b0ab6e5e501ca4e219ff824ef8473
 
 build:
-  number: 0
+  number: 1
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: true  # [win]
   rpaths:
@@ -31,6 +31,14 @@ requirements:
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-boot >=1.3_1               # [build_platform != target_platform]
+    - r-deldir                     # [build_platform != target_platform]
+    - r-e1071                      # [build_platform != target_platform]
+    - r-s2                         # [build_platform != target_platform]
+    - r-sf                         # [build_platform != target_platform]
+    - r-sp >=1.0                   # [build_platform != target_platform]# [build_platform != target_platform]
+    - r-spdata >=2.3.1             # [build_platform != target_platform]
+    - r-units                      # [build_platform != target_platform]
   host:
     - r-base
     - r-boot >=1.3_1
@@ -65,7 +73,6 @@ about:
     Index, 'Getis/Ord' G ('Getis' and 'Ord' 1992) <doi:10.1111/j.1538-4632.1992.tb00261.x> and multicoloured join count statistics, 'APLE' ('Li 'et al.' ) <doi:10.1111/j.1538-4632.2007.00708.x>, local 'Moran's I', 'Gearys C' ('Anselin' 1995) <doi:10.1111/j.1538-4632.1995.tb00338.x> and 'Getis/Ord' G ('Ord' and 'Getis' 1995)
     <doi:10.1111/j.1538-4632.1995.tb00912.x>, 'saddlepoint' approximations ('Tiefelsdorf' 2002) <doi:10.1111/j.1538-4632.2002.tb01084.x> and exact tests for global and local 'Moran's I' ('Bivand et al.' 2009) <doi:10.1016/j.csda.2008.07.021> and 'LOSH' local indicators of spatial heteroscedasticity ('Ord' and 'Getis') <doi:10.1007/s00168-011-0492-y>.
     The implementation of most of the measures is described in 'Bivand' and 'Wong' (2018) <doi:10.1007/s11749-018-0599-x>. From 'spdep' and 'spatialreg' versions >= 1.2-1, the model fitting functions previously present in this package are defunct in 'spdep' and may be found in 'spatialreg'."
-  license_family: GPL2
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
