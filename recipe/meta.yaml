@@ -1,4 +1,4 @@
-{% set version = "1.3-11" %}
+{% set version = "1.4-1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,15 +9,18 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: a35ddeb395d70e7355960a248bba0b8729cd9671121edc2c1d074bf6eb9d85e2
+  sha256: 4d0beca3b8b696373a74670f916cca3e77cbe97d002f3be62f172815774f5588
 
 build:
   number: 0
-  # Checking windows to see if it passes. Uncomment the line if it fails.
-  # skip: true  # [win]
+  skip: true  # [win]
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -36,7 +39,7 @@ requirements:
     - r-e1071                      # [build_platform != target_platform]
     - r-s2                         # [build_platform != target_platform]
     - r-sf                         # [build_platform != target_platform]
-    - r-sp >=1.0                   # [build_platform != target_platform]# [build_platform != target_platform]
+    - r-sp >=1.0                   # [build_platform != target_platform]
     - r-spdata >=2.3.1             # [build_platform != target_platform]
     - r-units                      # [build_platform != target_platform]
   host:
