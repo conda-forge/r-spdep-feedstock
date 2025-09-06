@@ -13,11 +13,13 @@ source:
 
 build:
   number: 0
-  # Checking windows to see if it passes. Uncomment the line if it fails.
-  # skip: true  # [win]
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -36,7 +38,7 @@ requirements:
     - r-e1071                      # [build_platform != target_platform]
     - r-s2                         # [build_platform != target_platform]
     - r-sf                         # [build_platform != target_platform]
-    - r-sp >=1.0                   # [build_platform != target_platform]# [build_platform != target_platform]
+    - r-sp >=1.0                   # [build_platform != target_platform]
     - r-spdata >=2.3.1             # [build_platform != target_platform]
     - r-units                      # [build_platform != target_platform]
   host:
