@@ -1,4 +1,4 @@
-{% set version = "1.4-2" %}
+{% set version = "1.4-3" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/spdep_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/spdep/spdep_{{ version }}.tar.gz
-  sha256: 8cd0892392b26e7e437f25e820c9ffb12ee1a07174613026153db05004093688
+  sha256: 4ca162eb392cd7ab942d2eb6e00a998b84d96eb42c47449dc52336865b6cc460
 
 build:
   number: 0
